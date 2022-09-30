@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var products: [Product] = []
+    var page: Int = 5
+    var loading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,13 +40,23 @@ class ViewController: UIViewController {
 
 extension ViewController{
     func getProducts(){
-        NetworkManager.shared.getProducts { (result: Result<[Product], Error>) in
+        loading = true
+        let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
+        NetworkManager.shared.getProducts(queryItem: queryItems, path: "/products",page: page) { (result: Result<[Product], Error>) in
+            self.loading = false
             switch result{
             case .success(let data):
                 self.updateUI(product: data)
             case .failure(_):
                 print()
             }
+        }
+    }
+    
+    func fetchMoreProduct(){
+        if !loading{
+            page += 4
+            getProducts()
         }
     }
 }
@@ -68,11 +80,25 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         print(device)
         if device == "iPhone"{
             width =  UIScreen.main.bounds.width - 40
-            height = 204
+            height = 140 * 320 / width
         }else if device == "iPad"{
             height =  UIScreen.main.bounds.width * 711 / 466
             width = UIScreen.main.bounds.width * 466 / 711
         }
         return CGSize(width: width, height: height)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 19
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentYoffset = scrollView.contentOffset.y
+        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+        if distanceFromBottom < height {
+            fetchMoreProduct()
+        }
+    }
+    
 }

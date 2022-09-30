@@ -10,11 +10,11 @@ import Foundation
 class NetworkManager{
     static var shared = NetworkManager()
     
-    func getProducts<T: Decodable>(completion: @escaping(Result<T, Error>) -> Void){
+    func getProducts<T: Decodable>(queryItem: [URLQueryItem], path: String, page: Int,completion: @escaping(Result<T, Error>) -> Void){
         var component = URLComponents()
-        component.queryItems = []
+        component.queryItems = queryItem
         component.scheme = "https"
-        component.path = "/products"
+        component.path = path
         component.host = "fakestoreapi.com"
         print(component.url?.absoluteString)
         guard let url = component.url else{return}
