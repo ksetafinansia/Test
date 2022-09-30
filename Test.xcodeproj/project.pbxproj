@@ -26,6 +26,8 @@
 		F15B32B728E7044B00CAF4CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F15B32B528E7044B00CAF4CB /* Main.storyboard */; };
 		F15B32B928E705B400CAF4CB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32B828E705B400CAF4CB /* Networking.swift */; };
 		F15B32BE28E7312600CAF4CB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32BD28E7312600CAF4CB /* APIEndpoint.swift */; };
+		F15B32BF28E7391200CAF4CB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32B828E705B400CAF4CB /* Networking.swift */; };
+		F15B32C028E73A7B00CAF4CB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32BD28E7312600CAF4CB /* APIEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -501,6 +503,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F139D3F728E6F4DE00BB549F /* TestTests.swift in Sources */,
+				F15B32C028E73A7B00CAF4CB /* APIEndpoint.swift in Sources */,
+				F15B32BF28E7391200CAF4CB /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

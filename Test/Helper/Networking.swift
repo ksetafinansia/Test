@@ -19,6 +19,7 @@ class NetworkManager{
         component.scheme = "https"
         component.path = path
         component.host = APIEndpoint.baseURL
+        print(component.url?.absoluteString)
         guard let url = component.url else{return}
         URLSession.shared.dataTask(with: url){ data, response, error in
             guard let data = data, error == nil else{
@@ -30,7 +31,7 @@ class NetworkManager{
                     let model = try decoder.decode(T.self, from: data)
                     completion(.success(model))
                 }catch{
-                    print(error.localizedDescription)
+                    completion(.failure(error))
                 }
             }
         }.resume()

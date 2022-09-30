@@ -32,5 +32,23 @@ final class TestTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+    func testFetchAPI(){
+        let expectation = XCTestExpectation(description: "Expectation unmet")
+        let numberOfProductFetched = 4
+        let queryItem = [URLQueryItem(name: "limit", value: "\(numberOfProductFetched)")]
+        NetworkManager.shared.fetch(queryItem: queryItem, path: APIEndpoint.Product.product) { (result: Result<[Product], Error>) in
+            switch result{
+            case .success(let data):
+                print(data)
+                if numberOfProductFetched == data.count{
+                    expectation.fulfill()
+                }
+            case .failure(_):
+                print()
+            }
+        }
+        wait(for: [expectation], timeout: 10)
+    }
 
 }
