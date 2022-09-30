@@ -51,7 +51,7 @@ extension ProductPageViewController{
         loading = true
         let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
         let path = APIEndpoint.Product.product
-        NetworkManager.shared.fetch(queryItem: queryItems, path: path,page: page) { (result: Result<[Product], Error>) in
+        NetworkManager.shared.fetch(queryItem: queryItems, path: path) { (result: Result<[Product], Error>) in
             self.loading = false
             switch result{
             case .success(let data):
