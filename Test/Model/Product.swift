@@ -10,7 +10,7 @@ import Foundation
 class Product: Codable{
     var id: Int!
     var title: String!
-    var price: CGFloat!
+    var price: Double!
     var description: String!
     var category: String!
     var image: String!

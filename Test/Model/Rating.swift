@@ -9,7 +9,7 @@ import Foundation
 
 
 class Rating: Codable{
-    var rate: CGFloat!
+    var rate: Double!
     var count: Int!
     
     enum CodingKeys: String, CodingKey{

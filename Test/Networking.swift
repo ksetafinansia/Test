@@ -13,9 +13,10 @@ class NetworkManager{
     func getProducts<T: Decodable>(completion: @escaping(Result<T, Error>) -> Void){
         var component = URLComponents()
         component.queryItems = []
-        component.scheme = "fakestoreapi.com"
-        component.path = "products"
-        component.host = "https"
+        component.scheme = "https"
+        component.path = "/products"
+        component.host = "fakestoreapi.com"
+        print(component.url?.absoluteString)
         guard let url = component.url else{return}
         var session = URLSession.shared.dataTask(with: url){ data, response, error in
             guard let data = data, error == nil else{
@@ -27,7 +28,7 @@ class NetworkManager{
                     var model = try decoder.decode(T.self, from: data)
                     completion(.success(model))
                 }catch{
-                    
+                    print(error.localizedDescription)
                 }
             }
         }.resume()
