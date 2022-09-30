@@ -45,7 +45,7 @@ extension ProductPageViewController{
     func getProducts(){
         loading = true
         let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
-        NetworkManager.shared.getProducts(queryItem: queryItems, path: "/products",page: page) { (result: Result<[Product], Error>) in
+        NetworkManager.shared.fetch(queryItem: queryItems, path: "/products",page: page) { (result: Result<[Product], Error>) in
             self.loading = false
             switch result{
             case .success(let data):
@@ -67,8 +67,8 @@ extension ProductPageViewController{
 
 extension ProductPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CatalogCollectionViewCell
-        var product = products[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CatalogCollectionViewCell
+        let product = products[indexPath.row]
         cell.setupUI(product: product)
         return cell
     }
@@ -78,7 +78,7 @@ extension ProductPageViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var device = UIDevice.current.localizedModel
+        let device = UIDevice.current.localizedModel
         var width: CGFloat = 0.0
         var height: CGFloat = 0.0
         print(device)
@@ -86,8 +86,10 @@ extension ProductPageViewController: UICollectionViewDataSource, UICollectionVie
             width =  UIScreen.main.bounds.width - 40
             height = 140 * 320 / width
         }else if device == "iPad"{
-            height =  UIScreen.main.bounds.width * 711 / 466
-            width = UIScreen.main.bounds.width * 466 / 711
+            //Size below is gotten from Figma's iPad prototype adjusted to whatever iPad is used by  the user
+            print("width = \(UIScreen.main.bounds.width), height = \(UIScreen.main.bounds.height)")
+            width = UIScreen.main.bounds.width *  0.62
+            height =  width * (204 / 466)
         }
         return CGSize(width: width, height: height)
     }

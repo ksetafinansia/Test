@@ -10,28 +10,27 @@ import Foundation
 class NetworkManager{
     static var shared = NetworkManager()
     
-    func getProducts<T: Decodable>(queryItem: [URLQueryItem], path: String, page: Int,completion: @escaping(Result<T, Error>) -> Void){
+    //MARK:
+    func fetch<T: Decodable>(queryItem: [URLQueryItem], path: String, page: Int,completion: @escaping(Result<T, Error>) -> Void){
         var component = URLComponents()
         component.queryItems = queryItem
         component.scheme = "https"
         component.path = path
         component.host = "fakestoreapi.com"
-        print(component.url?.absoluteString)
         guard let url = component.url else{return}
-        var session = URLSession.shared.dataTask(with: url){ data, response, error in
+        URLSession.shared.dataTask(with: url){ data, response, error in
             guard let data = data, error == nil else{
                 return
             }
             if let data = data {
-                var decoder = JSONDecoder()
+                let decoder = JSONDecoder()
                 do{
-                    var model = try decoder.decode(T.self, from: data)
+                    let model = try decoder.decode(T.self, from: data)
                     completion(.success(model))
                 }catch{
                     print(error.localizedDescription)
                 }
             }
         }.resume()
-        
     }
 }
