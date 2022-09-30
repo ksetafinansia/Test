@@ -7,7 +7,7 @@
 
 ## Supported Feature
 - Infinite Scroll (pagination)
-- Dynamic size 
+- Auto Layout
 - Unit Test
 
 ## Requirement to build App & Step by step installation
@@ -17,20 +17,10 @@
 - MacOS
 
 ### Step by step Installation
-1. Clone the repo
+1. Download ZIP or Clone the repo 
    ```sh
    git clone https://github.com/reyhanl/Test.git
-   ```
-2. Go to project folder with Terminal and run
-   ```sh
-   pod install
-   ```
-3. open `Test.xcworkspace`
 
-4. Run the project
+2. open `Test.xcworkspace`
 
-
-
-
-## Tech Stack 
-`Swift` `NoSql` `SwiftUI` `JavaScript`
+3. Run the project
