@@ -25,6 +25,7 @@
 		F15B32B328E7040F00CAF4CB /* CatalogCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F15B32B128E7040F00CAF4CB /* CatalogCollectionViewCell.xib */; };
 		F15B32B728E7044B00CAF4CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F15B32B528E7044B00CAF4CB /* Main.storyboard */; };
 		F15B32B928E705B400CAF4CB /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32B828E705B400CAF4CB /* Networking.swift */; };
+		F15B32BE28E7312600CAF4CB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15B32BD28E7312600CAF4CB /* APIEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		F15B32B128E7040F00CAF4CB /* CatalogCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CatalogCollectionViewCell.xib; sourceTree = "<group>"; };
 		F15B32B628E7044B00CAF4CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F15B32B828E705B400CAF4CB /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		F15B32BD28E7312600CAF4CB /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 		F15B32BC28E72A9C00CAF4CB /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				F15B32BD28E7312600CAF4CB /* APIEndpoint.swift */,
 				F15B32B828E705B400CAF4CB /* Networking.swift */,
 			);
 			path = Helper;
@@ -482,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F15B32AD28E7040A00CAF4CB /* Rating.swift in Sources */,
+				F15B32BE28E7312600CAF4CB /* APIEndpoint.swift in Sources */,
 				F15B32A928E7040400CAF4CB /* ProductPageViewController.swift in Sources */,
 				F139D3E728E6F4DA00BB549F /* Test.xcdatamodeld in Sources */,
 				F15B32B928E705B400CAF4CB /* Networking.swift in Sources */,

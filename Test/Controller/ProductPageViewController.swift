@@ -9,8 +9,10 @@ import UIKit
 
 class ProductPageViewController: UIViewController {
     
+    //MARK: Outlet
     @IBOutlet weak var collectionView: UICollectionView!
     
+    //MARK: Variable
     var products: [Product] = []
     var page: Int = 5
     var loading = false
@@ -22,6 +24,7 @@ class ProductPageViewController: UIViewController {
         getProducts()
     }
     
+    //MARK: Initial Setup
     func setupUI(){
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -42,6 +45,8 @@ class ProductPageViewController: UIViewController {
 }
 
 extension ProductPageViewController{
+    
+    //MARK: Networking
     func getProducts(){
         loading = true
         let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
@@ -66,6 +71,8 @@ extension ProductPageViewController{
 }
 
 extension ProductPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    
+    //MARK: UICollectionViewDelegate, DataSource, Implementation
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CatalogCollectionViewCell
         let product = products[indexPath.row]
@@ -97,6 +104,7 @@ extension ProductPageViewController: UICollectionViewDataSource, UICollectionVie
         return 19
     }
     
+    //Infinite Scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYoffset = scrollView.contentOffset.y

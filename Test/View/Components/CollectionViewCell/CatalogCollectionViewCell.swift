@@ -9,15 +9,17 @@ import UIKit
 import Kingfisher
 
 class CatalogCollectionViewCell: UICollectionViewCell {
+    //MARK: Outlet
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
-    
+    @IBOutlet weak var productDescriptionLabel: UILabel!
+
+    //MARK: Variable
     var cornerRadius = 10.0
     
-    @IBOutlet weak var productDescriptionLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -34,6 +36,7 @@ class CatalogCollectionViewCell: UICollectionViewCell {
         ).cgPath
     }
     
+    //MARK: Initial Setup
     func setupUI(product: Product){
         productNameLabel.text = product.title
         priceLabel.text = "\(product.price ?? 0.0)"

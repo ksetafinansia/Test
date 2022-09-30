@@ -8,10 +8,12 @@
 import Foundation
 
 class NetworkManager{
+    //MARK: Variable
     static var shared = NetworkManager()
     
-    //MARK:
+    //MARK: Fetch
     func fetch<T: Decodable>(queryItem: [URLQueryItem], path: String, page: Int,completion: @escaping(Result<T, Error>) -> Void){
+        //TODO: Create enum or class for URL
         var component = URLComponents()
         component.queryItems = queryItem
         component.scheme = "https"
