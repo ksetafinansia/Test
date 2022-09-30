@@ -87,7 +87,6 @@ extension ProductPageViewController: UICollectionViewDataSource, UICollectionVie
             height = 140 * 320 / width
         }else if device == "iPad"{
             //Size below is gotten from Figma's iPad prototype adjusted to whatever iPad is used by  the user
-            print("width = \(UIScreen.main.bounds.width), height = \(UIScreen.main.bounds.height)")
             width = UIScreen.main.bounds.width *  0.62
             height =  width * (204 / 466)
         }
