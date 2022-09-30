@@ -30,7 +30,9 @@ class ViewController: UIViewController {
     
     func updateUI(product: [Product]){
         products = product
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
 }
 
