@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class CatalogCollectionViewCell: UICollectionViewCell {
+    
     //MARK: Outlet
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var priceLabel: UILabel!

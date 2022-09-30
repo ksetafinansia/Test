@@ -50,7 +50,8 @@ extension ProductPageViewController{
     func getProducts(){
         loading = true
         let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
-        NetworkManager.shared.fetch(queryItem: queryItems, path: "/products",page: page) { (result: Result<[Product], Error>) in
+        let path = APIEndpoint.Product.product
+        NetworkManager.shared.fetch(queryItem: queryItems, path: path,page: page) { (result: Result<[Product], Error>) in
             self.loading = false
             switch result{
             case .success(let data):
@@ -88,10 +89,9 @@ extension ProductPageViewController: UICollectionViewDataSource, UICollectionVie
         let device = UIDevice.current.localizedModel
         var width: CGFloat = 0.0
         var height: CGFloat = 0.0
-        print(device)
         if device == "iPhone"{
             width =  UIScreen.main.bounds.width - 40
-            height = 140 * 320 / width
+            height = (140 / 320) * width
         }else if device == "iPad"{
             //Size below is gotten from Figma's iPad prototype adjusted to whatever iPad is used by  the user
             width = UIScreen.main.bounds.width *  0.62

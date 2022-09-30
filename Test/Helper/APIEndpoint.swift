@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct APIEndpoint{
+    static let baseURL = "fakestoreapi.com"
+    struct Product{
+        static let product = "/products"
+    }
+}

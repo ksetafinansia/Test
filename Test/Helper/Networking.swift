@@ -18,7 +18,7 @@ class NetworkManager{
         component.queryItems = queryItem
         component.scheme = "https"
         component.path = path
-        component.host = "fakestoreapi.com"
+        component.host = APIEndpoint.baseURL
         guard let url = component.url else{return}
         URLSession.shared.dataTask(with: url){ data, response, error in
             guard let data = data, error == nil else{
