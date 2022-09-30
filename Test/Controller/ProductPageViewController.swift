@@ -7,30 +7,33 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ProductPageViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
     var products: [Product] = []
     var page: Int = 5
     var loading = false
+    var alreadyGotAllDataFromAPI = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         getProducts()
-        // Do any additional setup after loading the view.
     }
     
     func setupUI(){
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        var cell = UINib(nibName: "CatalogCollectionViewCell", bundle: nil)
+        let cell = UINib(nibName: "CatalogCollectionViewCell", bundle: nil)
         collectionView.register(cell, forCellWithReuseIdentifier: "cell")
     }
     
     func updateUI(product: [Product]){
+        if self.products.count == product.count{
+            alreadyGotAllDataFromAPI = true
+        }
         products = product
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -38,7 +41,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController{
+extension ProductPageViewController{
     func getProducts(){
         loading = true
         let queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(page)")]
@@ -54,14 +57,15 @@ extension ViewController{
     }
     
     func fetchMoreProduct(){
-        if !loading{
+        //Check if there is no API call in progress and make sure there is still data to fetch
+        if !loading && !alreadyGotAllDataFromAPI{
             page += 4
             getProducts()
         }
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+extension ProductPageViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CatalogCollectionViewCell
         var product = products[indexPath.row]
