@@ -49,7 +49,7 @@ extension ViewController{
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CatalogCollectionViewCell
         var product = products[indexPath.row]
@@ -59,5 +59,20 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         products.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var device = UIDevice.current.localizedModel
+        var width: CGFloat = 0.0
+        var height: CGFloat = 0.0
+        print(device)
+        if device == "iPhone"{
+            width =  UIScreen.main.bounds.width - 40
+            height = 204
+        }else if device == "iPad"{
+            height =  UIScreen.main.bounds.width * 711 / 466
+            width = UIScreen.main.bounds.width * 466 / 711
+        }
+        return CGSize(width: width, height: height)
     }
 }

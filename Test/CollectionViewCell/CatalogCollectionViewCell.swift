@@ -22,8 +22,8 @@ class CatalogCollectionViewCell: UICollectionViewCell {
     
     func setupUI(product: Product){
         productNameLabel.text = product.title
-        priceLabel.text = "\(product.price)"
-        productDescriptionLabel.text = product.description
+        priceLabel.text = "\(product.price ?? 0.0)"
+        productDescriptionLabel.text = product.description 
         guard let urlString = product.image, let url = URL(string: urlString) else{return}
     }
 
