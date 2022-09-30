@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     var products: [Product]!
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         setupUI()
         // Do any additional setup after loading the view.
     }
-
+    
     func setupUI(){
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -30,6 +30,19 @@ class ViewController: UIViewController {
     func updateUI(product: [Product]){
         products = product
         collectionView.reloadData()
+    }
+}
+
+extension ViewController{
+    func getProducts(){
+        NetworkManager.shared.getProducts { (result: Result<[Product], Error>) in
+            switch result{
+            case .success(let data):
+                self.updateUI(product: data)
+            case .failure(_):
+                print()
+            }
+        }
     }
 }
 
