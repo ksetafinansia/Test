@@ -10,6 +10,7 @@ Hi! I would like to say thank you beforehand for giving your time to test this p
 - Infinite Scroll (pagination)
 - Auto Layout
 - Unit Test
+- MVC (I am also familiar with VIPER but I decided to use mvc for one page app like this)
 
 ## Requirement to build App & Step by step installation
 
